@@ -1,0 +1,83 @@
+#include <stdio.h>
+int main()
+{
+	int n,i;
+	scanf("%d",&n);
+	while(n%10==0)
+	{
+		n=n/10;
+	}
+		while(n>0)
+		{
+			i=n%10;
+			printf("%d",i);
+			n=n/10;
+		}
+	return 0;
+}
+
+#include <stdio.h>
+int main()
+{
+	int n,i;
+	int sum=0;
+	scanf("%d",&n);
+	while(n>0)
+	{
+		i=n%10;
+		sum=sum+i;
+		n=n/10;
+	}
+	printf("%d\n",sum);
+	return 0;
+}
+#include <stdio.h>
+int main()
+{
+	char ch;
+	scanf("%c",&ch);
+	if(ch>='a'&&ch<='z')
+	{
+		ch=ch-32;
+		printf("%c\n",ch);
+	}
+	else if(ch>='A'&&ch<='Z')
+	{
+		ch=ch+32;
+		printf("%c\n",ch);
+	}
+	else
+	printf("%c\n",ch);
+	return 0;
+}
+#include <stdio.h>
+int main()
+{
+	int n,count=0;
+	scanf("%d",&n);
+	do
+	{
+		++count;
+		n=n/10;
+		
+	}while(n>0);
+	printf("%d\n",count);
+	return 0;
+}
+#include <stdio.h>
+int main()
+{
+	int n,m,x=0,y=0;
+	scanf("%d%d",&n,&m);
+	y=(m-2*n)/2;
+	x=(4*n-m)/2;
+	if(x>=0&&y>=0&&m%2==0)
+	{
+		printf("%d %d\n",x,y);
+	}
+	else
+	{
+		printf("NO answer\n");
+	}
+	return 0;
+}
