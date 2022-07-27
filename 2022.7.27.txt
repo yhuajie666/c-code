@@ -1,0 +1,39 @@
+//#include <stdio.h>
+//int main()
+//{
+//	int i=0;
+//	for(i=0;i<100;i++)
+//	{
+//		printf("%d ",i);
+//	}
+//	return 0;
+//}
+//查找字符
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+	char a[]={"0"};
+	int i;
+	char key;
+	int count=0;
+	gets(a);
+	scanf("%c",&key);
+	int str=strlen(a);
+	for(i=0;i<str;i++)
+	{
+		if(a[i]==key)
+		{
+			count++;		
+		}
+	}
+	printf("%d\n",count);
+	for(i=0;i<str;i++)
+	{
+		if(a[i]==key)
+		{
+			printf("%d\n",i+1);
+		}
+	} 
+	return 0;
+}
