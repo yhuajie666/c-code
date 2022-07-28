@@ -1,0 +1,59 @@
+//死循环 
+//#include <stdio.h>
+//int main()
+//{
+//	int i=0;
+//	int arr[10]={1,2,3,4,5,6,7,8,9,10};
+//	for(i=0;i<=12;i++)
+//	{
+//		printf("hehe\n");
+//		arr[i]=0;
+//	}
+//	return 0;
+//}
+//字符串拷贝 
+//#include <stdio.h>
+//#include <assert.h>
+//char* my_strcpy(char* arr1,const char* arr2);
+//int main()
+//{
+//	char arr1[]="***********";
+//	char arr2[]="###########";
+//	char *str=my_strcpy(arr1,arr2);
+//	printf("%s\n",str);
+//	return 0;
+//}
+//char* my_strcpy(char* arr1,const char* arr2)
+//{
+//	char* str=arr1;
+//	assert(arr1!=0);   //断言 
+//	assert(arr2!=0);
+//	while(*arr1++=*arr2++)   //解引用 
+//	{
+//		;
+//	}
+//	return str;
+//}
+//字符串长度
+#include <stdio.h>
+#include <assert.h>
+int my_strlen(const char* arr);
+int main()
+{
+	char arr[]="0";
+	gets(arr);
+	int len=my_strlen(arr);
+	printf("%d\n",len);
+	return 0;
+}
+int my_strlen(const char* arr)
+{
+	int count=0;
+	assert(arr!=0);
+	while(*arr!='\0')
+	{
+		count++;
+		arr++;
+	}
+	return count;
+} 
