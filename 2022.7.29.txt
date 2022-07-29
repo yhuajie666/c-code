@@ -1,0 +1,27 @@
+//#include <stdio.h>
+//int main()
+//{
+//	int a=10;
+//	int b=-20;
+//	int c=-30;
+//	return 0;
+//}
+#include <stdio.h>
+int main()
+{
+	int n,i,s;
+	int z=0,f=0,l=0;
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		scanf("%d",&s);
+		if(s>0)
+			z++;
+		else if(s<0)
+			f++;
+		else if(s==0)
+			l++;
+	}
+	printf("%d\n%d\n%d\n",z,f,l);
+	return 0;
+}
