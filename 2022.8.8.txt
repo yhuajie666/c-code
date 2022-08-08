@@ -1,0 +1,41 @@
+//#include <stdio.h>
+//int main()
+//{
+//	const char* p="abcdef";
+//	printf("%c",*p);
+//	//数组指针
+//	//int* p3;  //整形指针-指向整形的指针
+//	int arr1[5];
+//	int(*pa)[5]=&arr1;  //数组指针 
+//	return 0;
+//}
+//#include<stdio.h>
+//void test(int arr[3][5])
+//{}
+//void test1(int arr[][5])
+//{}
+//int main()
+//{
+//	int arr[3][5]={0};
+//	test(arr);
+//	test1(arr);
+//	return 0;
+//} 
+
+//数组指针-指向数组的指针
+//函数指针-指向函数的指针-存放函数地址的指针 
+#include <stdio.h>
+int add(int x,int y)
+{
+	int z;
+	z=x+y;
+	return z;
+}
+int main()
+{
+	int s;
+	int(*p)(int,int)=add;
+	s=(*p)(12,15);
+	printf("%d\n",s);
+	return 0;
+}
