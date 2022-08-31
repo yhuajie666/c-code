@@ -1,0 +1,77 @@
+#include<stdio.h>
+struct studentInfo
+{
+    char name[20];
+    char gender;
+    int score;
+};
+typedef struct studentInfo student;
+int main()
+{
+	student s;
+	gets(s.name);
+	scanf("%c",&s.gender);
+	scanf("%d",&s.score);
+	printf("%s\n",s.name);
+	printf("%c\n",s.gender);
+	printf("%d\n",s.score);
+	return 0;
+}
+#include<stdio.h>
+struct student
+{
+	char name[20];
+	char gender;
+	int score[3];
+};
+typedef struct student STU;
+//设计描述学生信息的结构体类型，别名为STU
+int main()
+{
+	STU s; //定义结构体变量，用别名方式
+	int i;
+	gets(s.name);
+	scanf("%c",&s.gender);
+	for(i=0;i<3;i++)
+	{
+		scanf("%d",&s.score[i]);
+	}
+ 
+//设计输入语句
+	puts(s.name);
+	printf("%c\n",s.gender);
+	for(i=0;i<3;i++)
+		printf("%d ",s.score[i]);
+	printf("\n");
+	return 0;
+}
+#include<stdio.h>
+struct Date
+	{
+		int y;
+		int m;
+		int d;
+	};
+//设计表示出生日期的结构体，包含成员：年、月、日
+struct student
+{
+	char name[20];
+	char gender;
+	struct Date date;
+};
+typedef struct student STU;
+//设计表示学生信息的结构体，包含成员：姓名、性别、出生日期。该结构体别名为STU
+int main()
+{
+	STU s;
+	gets(s.name);
+	scanf("%c",&s.gender);
+	scanf("%d",&s.date.y);
+	scanf("%d",&s.date.m);
+	scanf("%d",&s.date.d);
+//设计语句输入学生的姓名、性别、出生日期
+	puts(s.name);
+	printf("%c\n",s.gender);
+	printf("%d %d %d\n",s.date.y,s.date.m,s.date.d);
+	return 0;
+}
