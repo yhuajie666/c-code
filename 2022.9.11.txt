@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "DataElement.h"
+ElementType dataarray[]={
+	{1,"奇异博士"},
+	{2,"美队"},
+	{3,"daish"},
+	{4,"puti"}
+};
+void Testsequencelist();
+int main()
+{
+	Testsequencelist();
+	return 0;
+}
+void Testsequencelist()
+{
+	SeqList seqlist;
+	InitList(&seqlist,dataarray,sizeof(dataarray)/sizeof(dataarray[0]));
+	PrintList(seqlist);
+}
+//函数名
+#include <stdio.h>
+#include <stdlib.h>
+#include "DataElement.h"
+void InitList(SeqList *seqlist,ElementType *elemarray,int length);
+void InsertElement(SeqList *seqlist,int index,ElementType element);
+void PrintList(SeqList *seqlist);
+//函数实现
+#include "SequenceList.h"
+void InitList(SeqList *seqlist,ElementType *elemarray,int length)
+{
+	if(length>MAX_SIZE)
+	{
+		printf("超出数组最大容量，初始化失败!\n");
+		return;
+	}
+	seqlist->length=0;
+	int i;
+	for(i=0;i<length;i++)
+	{
+		InsertElement(seqlist,i,elemarray[i]);
+	}
+}
+void InsertElement(SeqList *seqlist,int index,ElementType element)
+{
+	if(seqlist->length+1>=MAX_SIZE)
+	{
+		printf("数组已满，插入元素失败！\n");
+		return;
+	}
+	if(index<0||index>MAX_SIZE)
+	{
+		printf("只能在允许的下标范围内插入元素[0,%d]\n",MAX_SIZE-1);
+		return;
+	}
+	if(index>seqlist->length)
+	{
+		printf("插入的下标超过了数组最大长度-1，插入失败\n");
+		return;
+	}
+	int i;
+	for(i=seqlist->length-1;i>=index;i--)
+	{
+		seqlist->datas[i+1]=seqlist->datas[i];
+	}
+	seqlist->datas[index]=element;
+	seqlist->length++;
+}
+void PrintList(SeqList *seqlist)
+{
+	int i;
+	for(i=0;i<seqlist->length;i++)
+	{
+		printf("%d\t%s\t\n",seqlist->datas[i].id,seqlist->datas[i].name);
+	}
+}
+
+#define MAX_SIZE 225
+//1.定义数据元素
+typedef struct
+{
+	int id;
+	char *name;
+}ElementType; 
+//2.定义顺序表结构 
+typedef struct
+{
+	ElementType datas[MAX_SIZE];
+	int length;	
+}SeqList; 
