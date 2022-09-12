@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#define ElemType int
+typedef struct LNode
+{
+	ElemType Date;
+	struct LNode * Next;
+}LNode,*LinkList;
+LinkList CreateList_Head(LinkList L)
+{
+	LinkList s;
+	int x;
+	L=(LNode*)malloc(sizeof(LNode));
+	L->Next=NULL;
+	scanf("%d",&x);
+	while(x!=9999)
+	{
+		s=(LNode*)malloc(sizeof(LNode));
+		s->Date=x;
+		s->Next=L->Next;
+		L->Next=s;
+		scanf("%d",&x);
+	}
+	return L;
+}
+void PrintList(LinkList L)
+{
+	LinkList p;
+	p=L->Next;
+	while(p!=NULL)
+	{
+		printf("%d",p->Date);
+		p=p->Next;
+	}
+	printf("\n");
+}
+int main()
+{
+	LinkList L;
+	L=CreateList_Head(L);
+	PrintList(L);
+	return 0;
+}
