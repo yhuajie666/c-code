@@ -1,0 +1,60 @@
+#include "LinkList.h"
+
+void LinkListPushBack(LL**pphead,LDataType x)
+{
+	LL* newLL=(LL*)malloc(sizeof(LL));
+	newLL->data=x;
+	newLL->next=NULL;
+	if(*pphead==NULL)
+	{
+		*pphead=newLL;
+	}
+	else
+	{
+		LL*tail=*pphead;
+		while(tail->next!=NULL)
+		{
+			tail=tail->next;
+		}
+		tail->next=newLL;
+	}
+}
+void LinkListPopBack(LL**pphead)
+{
+	LL* tail=*pphead;
+	while(tail->next->next!=NULL)
+	{
+		tail=tail->next;
+	}
+	free(tail->next);
+	tail->next=NULL;
+}
+void LinkListPushFront(LL**pphead,LDataType x)
+{
+	LL* newLL=(LL*)malloc(sizeof(LL));
+	newLL->data=x;
+	newLL->next=NULL;
+	if(*pphead==NULL)
+	{
+		*pphead=newLL;
+	}
+	else
+	{
+		newLL->next=*pphead;
+		*pphead=newLL;
+	}
+}
+void LinkListPopFront(LL**pphead)
+{
+	
+}
+void LinkListPrint(LL*phead)
+{
+	LL*cur=phead;
+	while(cur!=NULL)
+	{
+		printf("%d ",cur->data);
+		cur=cur->next;
+	}
+	printf("\n");
+}

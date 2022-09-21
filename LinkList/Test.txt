@@ -1,0 +1,47 @@
+#include "LinkList.h"
+void LinkListTest1()
+{
+	LL* plist=NULL;
+	LinkListPushBack(&plist,1);
+	LinkListPushBack(&plist,2);
+	LinkListPushBack(&plist,3);
+	LinkListPushBack(&plist,4);
+	LinkListPushBack(&plist,5);
+	LinkListPrint(plist);
+}
+void LinkListTest2()
+{
+	LL* plist=NULL;
+	LinkListPushBack(&plist,1);
+	LinkListPushBack(&plist,2);
+	LinkListPushBack(&plist,3);
+	LinkListPushBack(&plist,4);
+	LinkListPushBack(&plist,5);
+	LinkListPopBack(&plist);
+	LinkListPopBack(&plist);
+	LinkListPopBack(&plist);
+	LinkListPopBack(&plist);
+	LinkListPopBack(&plist);
+	LinkListPopBack(&plist);
+	LinkListPrint(plist);
+}
+void LinkListTest3()
+{
+	LL* plist=NULL;
+	LinkListPushBack(&plist,1);
+	LinkListPushBack(&plist,2);
+	LinkListPushBack(&plist,3);
+	LinkListPushBack(&plist,4);
+	LinkListPushBack(&plist,5);
+	LinkListPrint(plist);
+	LinkListPushFront(&plist,10);
+	LinkListPrint(plist);
+}
+int main()
+{
+	//LinkListTest1();
+	//LinkListTest2();
+	LinkListTest3();
+	return 0;
+}
+

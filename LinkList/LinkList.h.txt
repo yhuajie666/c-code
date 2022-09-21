@@ -1,0 +1,14 @@
+#include <stdio.h>
+#include <stdlib.h>
+typedef int LDataType;
+typedef struct LinkList
+{
+	int data;
+	struct LinkList* next;	
+}LL;
+
+void LinkListPrint(LL*phead);
+void LinkListPushBack(LL**pphead,LDataType x);
+void LinkListPopBack(LL**pphead);
+void LinkListPushFront(LL**pphead,LDataType x);
+void LinkListPopFront(LL**pphead);
