@@ -1,0 +1,141 @@
+#include <stdio.h>
+#include <assert.h>
+#include <malloc.h>
+
+typedef struct Node
+{
+	int val;
+	struct Node* next;
+}Node;
+typedef Node* NodeList;
+
+void InitList(NodeList* head)
+{
+	*head=(Node*)malloc(sizeof(Node));
+	assert(*head!=NULL);
+	(*head)->next=NULL;
+}
+
+void CreatList1(NodeList* head)
+{
+	*head=(Node*)malloc(sizeof(Node));
+	(*head)->val=1;
+	(*head)->next=NULL;
+	Node *p=*head;
+	int i;
+	for(i=2;i<=10;i++)
+	{
+		Node* s=(Node*)malloc(sizeof(Node));
+		assert(s!=NULL);
+		s->val=i;
+		s->next=NULL;
+		p->next=s;
+		p=s;
+	}
+	
+}
+void CreatList2(NodeList* head)
+{
+	*head=(Node*)malloc(sizeof(Node));
+	(*head)->val=1;
+	(*head)->next=NULL;
+	int i;
+	for(i=2;i<=10;i++)
+	{
+		Node* s=(Node*)malloc(sizeof(Node));
+		s->val=i;
+		s->next=NULL;
+		s->next=*head;
+		*head=s;
+	}
+}
+void CreatList3(NodeList* head)
+{
+	int i;
+	for(i=1;i<=10;i++)
+	{
+		Node* s=(Node*)malloc(sizeof(Node));
+		s->val=i;
+		s->next=(*head)->next;
+		(*head)->next=s;
+	}
+}
+void ShowList(NodeList head)
+{
+	Node *cur=head->next;
+	while(cur!=NULL)
+	{
+		printf("%d-->",cur->val);
+		cur=cur->next;
+	}
+	printf("NUL\n");
+}
+int FindList(NodeList * head,int x)
+{
+	assert(*head!=NULL);
+	Node* cur=*head;
+	while(cur!=NULL)
+	{
+		if(cur->val==x)
+		{
+			return cur->val;
+		}
+		cur=cur->next;
+	}
+	return -1;
+}
+void PopBack(NodeList * head)
+{
+	assert(*head!=NULL);
+	Node* tail=*head;
+	while(tail->next->next!=NULL)
+	{
+		tail=tail->next;
+	}
+	free(tail->next);
+	tail->next=NULL;
+}
+void PopFront(NodeList* head)
+{
+	assert(*head!=NULL);
+	Node* cur=(*head)->next;
+	(*head)->next=cur->next;
+	free(cur);
+	cur=NULL;
+}
+void InsertList(NodeList* head,int pos,int x)
+{
+	assert(*head!=NULL);
+	Node* cur=(*head)->next;
+	Node* s=(Node*)malloc(sizeof(Node));
+	int count=1;
+	//int i;
+	while(cur->next!=NULL)
+	{
+		if(count==pos)
+		{
+			s->val=x;
+			s->next=cur->next;
+			cur->next=s;
+		}
+		cur=cur->next;
+		count++;
+	}
+	
+} 
+int main()
+{
+	NodeList mylist;
+	InitList(&mylist);
+	//CreatList1(&mylist);
+	//CreatList2(&mylist);
+	CreatList3(&mylist);
+	//int ret=FindList(&mylist,8);
+	//printf("ret=%d\n",ret);
+	//PopBack(&mylist);		//尾删 
+	PopFront(&mylist);
+	PopFront(&mylist);
+	InsertList(&mylist,5,5);
+	ShowList(mylist);
+	return 0;
+}
