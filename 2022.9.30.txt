@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <string.h>
+#include <assert.h>
+char* my_strstr(char* str1,char* str2)
+{
+	assert(str1&&str2);
+	char* s1=NULL;
+	char* s2=NULL;
+	char* cur=str1;
+	while(str1)
+	{
+		s1=cur;
+		s2=str2;
+		while((*s1==*s2)&&(*s1!='\0')&&(*s2!='\0'))
+		{
+			s1++;
+			s2++;
+		}
+		if(*s2=='\0')
+		{
+			return cur;
+		}
+		cur++;
+	}
+	return NULL;
+}
+char* my_strcpy(char* str1,const char* str2)
+{
+	assert(str1&&str2);
+	char* ret=str1;
+	while(*ret++=*str2++)
+	{
+		;
+	}
+	return str1;
+
+}
+int main()
+{
+	char arr1[]="aaaabbbb";
+	char arr2[]="ab";
+	//char* ret1=my_strstr(arr1,arr2);	//寻找子字符串，arr1中找arr2是否存在 
+	//printf("%s\n",ret1);
+	char* ret2=my_strcpy(arr1,arr2);
+	printf("%s\n",ret2);
+	return 0;
+}
