@@ -1,0 +1,121 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+#define STACK_SIZE 10
+//进制转换
+typedef struct seqstack
+{
+	int* base;
+	int top;
+	int seqstacklength;
+}seqstack;
+
+void Initstack(seqstack* s)
+{
+	s->base=(int*)malloc(sizeof(int)*STACK_SIZE);
+	s->top=0;
+	s->seqstacklength=STACK_SIZE;
+}
+
+void push(seqstack* s,int x)
+{
+	if(s->top==s->seqstacklength)
+		return;
+	s->base[s->top]=x;
+	s->top++;
+}
+
+void pop(seqstack* s)
+{
+	if(s->top=0)
+		return;
+	s->top--;
+	
+}
+
+void print(seqstack* s)
+{
+	int i;
+	for(i=s->top-1;i>=0;i--)
+	{
+		printf("%d",s->base[i]);
+	}
+}
+int main()
+{
+	seqstack st;
+	Initstack(&st);
+	printf("将十进制的数转化为n进制的数\n");
+	printf("请输入一个十进制的数\n");
+	int number;
+	scanf("%d",&number);
+	printf("输入需要转化的进制\n");
+	int n;//进制 
+	scanf("%d",&n);
+	
+	while(number)
+	{
+		int a=number%n;
+		push(&st,a);
+		number/=n;
+	}
+	printf("转换后\n");
+	
+	print(&st);
+
+//栈的实现
+}#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+#define STACK_SIZE 10
+
+
+typedef struct seqstack
+{
+	int stacklength;
+	int top;
+	int* base;
+}seqstack;
+
+
+void seqstackInit(seqstack* s)
+{
+	s->base=(int*)malloc(sizeof(int)*STACK_SIZE);
+	s->stacklength=STACK_SIZE;
+	s->top=0;
+}
+void push(seqstack* s,int x)
+{
+	if(s->top==s->stacklength)
+		return;
+	s->base[s->top]=x;
+	s->top++;
+}
+void stackprint(seqstack* s)
+{
+	int i;
+	for(i=0;i<s->top;i++)
+	{
+		printf("%d ",s->base[i]);
+	}
+}
+void pop(seqstack* s)
+{
+	if(s->top==0)
+		return ;
+	s->top--;
+}
+int main()
+{
+	seqstack st;
+	seqstackInit(&st);
+	int i;
+	for(i=1;i<=5;i++)
+	{
+		push(&st,i);
+	}
+		pop(&st);
+		pop(&st);
+	stackprint(&st);
+
+}
