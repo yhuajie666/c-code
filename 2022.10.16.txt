@@ -1,0 +1,128 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+#define STACK_SIZE 10
+
+typedef struct seqstack
+{
+	int* base;
+	int top;
+	int seqstacklength;
+}seqstack;
+
+void Initstack(seqstack* s)
+{
+	s->base=(int*)malloc(sizeof(int)*STACK_SIZE);
+	s->top=0;
+	s->seqstacklength=STACK_SIZE;
+}
+
+void push(seqstack* s,int x)
+{
+	if(s->top==s->seqstacklength)
+		return;
+	s->base[s->top]=x;
+	s->top++;
+}
+
+void pop(seqstack* s)
+{
+	if(s->top=0)
+		return;
+	s->top--;
+	
+}
+
+void print(seqstack* s)
+{
+	int i;
+	for(i=s->top-1;i>=0;i--)
+	{
+		printf("%d",s->base[i]);
+	}
+}
+int main()
+{
+	seqstack st;
+	Initstack(&st);
+	printf("将十进制的数转化为n进制的数\n");
+	printf("请输入一个十进制的数\n");
+	int number;
+	scanf("%d",&number);
+	printf("输入需要转化的进制\n");
+	int n;//进制 
+	scanf("%d",&n);
+	
+	while(number)
+	{
+		int a=number%n;
+		push(&st,a);
+		number/=n;
+	}
+	printf("转换后\n");
+	
+	print(&st);
+	
+
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <malloc.h>
+
+#define MAXSIZE 10
+
+typedef struct queuenode
+{
+	int* base;
+	int front;
+	int rear;
+}queue;
+
+void Initqueue(queue* q)//初始化 
+{
+	q->base=(int*)malloc(sizeof(int)*MAXSIZE);
+	q->front=q->rear=0;	
+}
+
+void pushqueue(queue* q,int x)//入队 
+{
+	if(((q->rear+1)%MAXSIZE)==q->front)//对满 
+		return ;
+	q->base[q->rear]=x;
+	q->rear=(q->rear+1)%MAXSIZE;
+}
+
+void popqueue(queue* q)//出队 
+{
+	if(q->front==q->rear)
+		return;
+	q->front=(q->front+1)%MAXSIZE;
+}
+
+void printqueue(queue* q)//打印显示队列 
+{
+	int i;
+	for(i=q->front;i!=q->rear;)
+	{
+		printf("%d ",q->base[i]);
+		i=(i+1)%MAXSIZE;
+	}
+	printf("\n");
+}
+int main()
+{
+	queue Q;
+	Initqueue(&Q);
+	int i;
+	for(i=1;i<10;i++)
+	{
+		pushqueue(&Q,i);
+	}
+	popqueue(&Q);
+	printqueue(&Q);
+	//pushqueue(&Q,11);
+	pushqueue(&Q,111);
+	printqueue(&Q);
+	return 0;
+}
