@@ -1,0 +1,28 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <assert.h>
+#include <math.h>
+
+int fun(int n)//爬楼梯 
+{
+	if(n==1){return 1;}
+	if(n==2){return 2;}
+	int sum=0;
+	int pre=1,prepre=2;
+	int i;
+	for(i=3;i<=n;i++)
+	{
+		sum=pre+prepre;
+		pre=prepre;
+		prepre=sum;
+	}
+	return sum;
+}
+int main()
+{
+	int n;
+	printf("输入一个数:\n");
+	scanf("%d",&n);
+	int s=fun(n);
+	printf("%d",s);
+}
