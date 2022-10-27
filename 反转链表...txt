@@ -1,0 +1,42 @@
+leetcode206.反转链表
+给你单链表的头节点 head ，请你反转链表，并返回反转后的链表。
+
+C语言解题
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+
+struct ListNode* reverseList(struct ListNode* head){
+    /*struct ListNode* n1,* n2, *n3;
+    if(head==NULL)
+            return NULL;
+    n1=NULL;
+    n2=head;
+    n3=head->next;//保存下一个节点地址
+    while(n2)//当n2为空时，链表走到最后，返回n1
+    {
+        
+        n2->next=n1;
+        n1=n2;
+        n2=n3;
+        if(n3)
+        n3=n3->next;
+    }
+    return n1;*/
+    struct ListNode* cur=head;
+    struct ListNode* newhead=NULL;
+    while(cur)
+    {
+        struct ListNode* next=cur->next;
+        cur->next=newhead;
+        newhead=cur;
+        cur=next;
+    }
+    return newhead;
+}
