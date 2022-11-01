@@ -1,0 +1,138 @@
+/*************************************************************
+    链表的实现之增删功能  实现文件
+    更新于2020年4月21日   
+**************************************************************/
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "LinkList.h"
+
+void LL_Initiate(LinkList &L)
+//单链表的初始化，即：构造一个带头结点的空的单链表
+{
+	L=(LNode *)malloc(sizeof(LNode));
+    L->next=NULL;
+} 
+
+void LL_Free(LinkList &L)
+// 释放链表中各个结点。
+{
+	LinkList p;
+	while(L)
+	{
+		p=L;
+		L=L->next;
+		free(p);
+	}
+}
+
+bool LL_IsEmpty(LinkList L)
+// 判断链表是否为空。
+{
+    return L->next==NULL;
+}
+
+void LL_Create_H(LinkList &L,int n)
+// 输入n个数据元素，采用头插法，创建一个带头结点的单链表L。
+{
+	LNode *s; int i;
+	L=(LNode *)malloc(sizeof(LNode));	L->next=NULL; //建立一个带头结点的空链表
+	for(i=0;i<n;i++)
+	{
+		s=(LNode *)malloc(sizeof(LNode)); //生成新结点
+		scanf("%d", &s->data); //输入元素值		
+		s->next=L->next;   L->next=s;  //插入到表头			
+	}
+}
+
+void LL_Create_R(LinkList &L,int n)
+// 输入n个数据元素，采用尾插法，创建一个带头结点的单链表L。
+{    
+	LNode *r,*s; int i;
+	L=(LNode *)malloc(sizeof(LNode));	L->next=NULL; //建立一个带头结点的空链表 
+	r=L;  //尾指针r指向头结点
+	for(i=0;i<n;i++)
+	{
+		s=(LNode *)malloc(sizeof(LNode)); //生成新结点
+		scanf("%d", &s->data); //输入元素值		
+		s->next=NULL; r->next=s; //插入到表尾 
+		r=s;  //r指向新的尾结点		
+	}	
+}
+
+void LL_Print(LinkList L)
+// 输出整个线性表。
+{
+    LNode *p;
+	p=L->next;
+	while(p)
+	{
+		printf("%d  ",p->data); p=p->next;
+	}
+	printf("\n");
+}
+
+void LL_InsAt(LinkList L,int i,ElemType e)
+// 在带头结点的单链表L中第i个位置插入值为e的新元素，i的取值范围[1,n+1]
+{
+	// 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+	LinkList cur=L;
+    int count=0;
+    while(cur!=NULL)
+    {
+        ++count;
+        if(count==i)
+        {
+            LNode* s=(LNode *)malloc(sizeof(LNode));
+            s->data=e;
+            s->next=cur->next;
+
+            cur->next=s;
+        }
+        cur=cur->next;
+    }
+
+	/********** End **********/
+}
+
+void LL_DelAt(LinkList L,int i)
+// 在带头结点的单链表L中，删除第i个元素，i的取值范围[1,n]
+{
+	// 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+	LinkList cur=L;
+    int count=0;
+    while(cur!=NULL)
+    {
+        ++count;
+        if(count==i)
+        {
+            cur->next=cur->next->next;
+            
+        }
+        cur=cur->next;
+    }
+
+	/********** End **********/
+}
+
+void LL_DelValue(LinkList L, ElemType e)
+// 删除第一个值为e的数据元素
+{
+	// 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    LinkList cur=L;
+
+    while(cur->next!=NULL)
+    {
+        if(cur->next->data==e)
+        {
+            cur->next=cur->next->next;
+            return;
+        }
+        cur=cur->next;
+    }
+
+	/********** End **********/
+}
