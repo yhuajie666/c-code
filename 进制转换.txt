@@ -1,0 +1,67 @@
+/*************************************************************
+    利用栈实现数制转换  实现文件
+    更新于2020年4月27日
+**************************************************************/
+#include <stdio.h>
+#include <stdlib.h>
+#include "SeqStack.h"
+
+void SS_Initiate(SqStack &S)
+// 顺序栈的初始化，即构造一个空的顺序栈
+{
+	S.elem = (ElemType*)malloc(sizeof(ElemType)*MAXSIZE);
+	S.top=-1;
+}
+
+bool SS_IsEmpty(SqStack S)
+// 判断顺序栈是否为空
+{
+	return S.top==-1;	
+}
+
+bool SS_IsFull(SqStack S)
+// 判断顺序栈是否为满
+{
+	return S.top==MAXSIZE-1;	
+}
+
+void SS_Push(SqStack &S, ElemType e)
+// 插入元素e为新的栈顶元素
+{
+	if(SS_IsFull(S)) return;//栈满
+	S.top++; S.elem[S.top]=e;    
+}
+
+void SS_Pop(SqStack &S, ElemType &e)
+// 删除S的栈顶元素，用e返回其值
+{
+	if(SS_IsEmpty(S)) return; //栈空
+	e=S.elem[S.top]; S.top--;   
+}
+
+void Conversion(int N, int r)
+//  利用栈将十进制整数N转换成r进制数（如：二、八、十六进制）
+//  输出转换的结果
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    SqStack S;
+	SS_Initiate(S);
+	int i;
+	char X[] =  {'0','1','2','3','4','5','6',
+				'7','8','9','A','B','C','D','E','F'};
+	while(N!=0)
+	{
+		if(!(SS_IsFull(S)))
+		{
+			SS_Push(S,N%r);
+			N = N/r;
+		}
+	}
+	while(!SS_IsEmpty(S)){
+ 	SS_Pop(S, i);
+	printf("%c",X[i]);
+	}
+
+    /********** End **********/
+}
